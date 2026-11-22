@@ -30,7 +30,9 @@ services:
     restart: unless-stopped
 
   api:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.build
     container_name: hotel-api
     ports:
       - "3000:3000"
@@ -47,7 +49,9 @@ services:
     restart: unless-stopped
 
   worker:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.build
     container_name: hotel-worker
     command: ["npm", "run", "worker"]
     environment:
