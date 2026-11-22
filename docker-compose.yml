@@ -1,0 +1,15 @@
+
+services:
+  temporal:
+    image: temporalio/temporal:latest
+    container_name: hotel-temporal
+    ports:
+      - "7233:7233"
+      - "8233:8233"
+    command: server start-dev --ip 0.0.0.0
+    healthcheck:
+      test: ["CMD", "temporal", "operator", "cluster", "health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
