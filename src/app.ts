@@ -1,5 +1,7 @@
 import express from "express";
+
 import supplierRoutes from "./routes/supplier.routes";
+import hotelRoutes from "./routes/hotel.routes";
 
 const app = express();
 
@@ -14,7 +16,10 @@ app.get("/health", (req, res) => {
   });
 });
 
-// Supplier routes
+// Main hotel API
+app.use("/api", hotelRoutes);
+
+// Mock supplier APIs
 app.use("/", supplierRoutes);
 
 export default app;
